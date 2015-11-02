@@ -23,9 +23,62 @@
       }]
     });
   });
+
+
+$(function() {
+    new Highcharts.Chart({
+      chart: {
+        renderTo: "marr_vs_price"
+      },
+      title: {
+        text: "Present Worth Compared against MARR"
+      },
+      xAxis: {
+        categories: ['-10%', '-5%', '0%', '5%', '10%']
+      },
+      yAxis: {
+        title: {
+          text: "Dollars in Millions"
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+      },
+
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+      },
+
+      series: [{ 
+        name: 'MARR 5%',
+        data: <%= Diagram.pw_vs_mar(@diagram.investment, 5, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz) %>
+      }, {
+        name: 'MARR 10%',
+        data: <%= Diagram.pw_vs_mar(@diagram.investment, 10, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz) %>
+      }, {
+        name: 'MARR 15%',
+        data: <%= Diagram.pw_vs_mar(@diagram.investment, 15, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz) %>
+      }, { 
+        name: 'MARR 20%',
+        data: <%= Diagram.pw_vs_mar(@diagram.investment, 20, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz) %>
+      }, {
+        name: 'MARR 25%',
+        data: <%= Diagram.pw_vs_mar(@diagram.investment, 25, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz) %>
+      }
+    ]
+    });
+  });
+
 </script>
 
 <div id="flow_diagram" style="width:560px; height:300px;"></div>
+
+<div id="marr_vs_price" style="width:560px; height:300px;"></div>
 
 <p><b> Present Worth = </b> <%= Diagram.present_worth(@diagram.investment, @diagram.MARR, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz).round(2) %>  </p>
 <br>

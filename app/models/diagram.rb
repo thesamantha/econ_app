@@ -129,4 +129,16 @@ class Diagram < ActiveRecord::Base
       end
     end
   end
+
+  def self.pw_vs_mar(investment, marr, capacity, pur, puc, om, salv, horiz)
+
+      @pws = []
+      
+       horiz.to_i.times do |i|
+        @pws[i] = present_worth(investment, marr, capacity, pur, puc, om, salv, horiz)
+       end
+       
+      return @pws
+  end
+      
 end
