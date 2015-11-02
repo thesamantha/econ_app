@@ -44,7 +44,7 @@ class Diagram < ActiveRecord::Base
 
     if(db_sl == true)   #if user selected Declining Balance -> SL
       @alpha = percent/timeline   #determine alpha (multipler / no. of periods)
-      return price*@alpha*(1-@alpha)**(period - 1)
+      return price*@alpha*(1-@alpha)^(period - 1)
 
     else      #otherwise, if user selected Straight Line
       return (price - salvage)/timeline
