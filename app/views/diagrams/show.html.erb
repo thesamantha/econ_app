@@ -1,0 +1,39 @@
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    new Highcharts.Chart({
+      chart: {
+        type: 'column',
+        renderTo: "flow_diagram"
+      },
+      title: {
+        text: "After-Tax Cash Flow Diagram"
+      },
+      xAxis: {
+
+      },
+      yAxis: {
+        title: {
+          text: "Dollars in Millions"
+        }
+      },
+      series: [{ 
+        name: 'Net Cash Flow',
+        data: <%= Diagram.cash_flows(@diagram.investment, @diagram.MARR, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz, @diagram.deprec_type, @diagram.deprec_time, @diagram.DB_per, @diagram.loan_amt, @diagram.loan_time, @diagram.loan_interest_rate, @diagram.loan_type, @diagram.tax_rate)  %>,
+      }]
+    });
+  });
+</script>
+
+<div id="flow_diagram" style="width:560px; height:300px;"></div>
+
+<p><b> Present Worth = </b> <%= Diagram.present_worth(@diagram.investment, @diagram.MARR, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz).round(2) %>  </p>
+<br>
+<p><b> Future Worth = </b> <%= Diagram.future_worth(@diagram.investment, @diagram.MARR, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz).round(2) %>  </p>
+<br>
+<p><b> Annual Equivalent = </b> <%= Diagram.annual_equivalent(@diagram.investment, @diagram.MARR, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz).round(2) %>  </p>
+<br>
+<p><b> ERR = </b> <%= Diagram.err(@diagram.investment, @diagram.MARR, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz).round(2) %>  </p>
+<br>
+<p><b> Payback Period = </b> <%= Diagram.payback_period(@diagram.investment, @diagram.MARR, @diagram.capacity, @diagram.pur, @diagram.puc, @diagram.om, @diagram.salv, @diagram.horiz).round(2) %>  </p>
+

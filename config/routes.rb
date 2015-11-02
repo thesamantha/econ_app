@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'diagrams/index'
+
+  get 'diagrams/new'
+
+  get 'diagrams/create'
+
+  get 'diagrams/show'
+
+  resources :diagrams
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +63,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root 'diagrams#new'
 end

@@ -1,0 +1,76 @@
+<head>
+  <style>
+   body {
+      background-image: url("borrowed-background.png");
+      background-color: #2E64FE;
+    }
+  </style>
+</head>
+<h1>Input your project's data!</h1>
+<br>
+
+<p><b> Project Specs </b></p>
+<%= form_for(@diagram) do |f| %>
+  <div class="field">
+    <%= f.label :investment, 'Investment Amount:' %><br>
+    <%= f.text_field :investment %>
+<br>
+     <%= f.label :MARR, 'MARR:' %><br>
+     <%= f.text_field :MARR %>
+<br>
+    <%= f.label :capacity, 'Capacity:' %><br>
+    <%= f.text_field :capacity %>
+<br>
+     <%= f.label :pur, 'Per Unit Revenue:' %><br>
+     <%= f.text_field :pur %>
+<br>
+     <%= f.label :puc, 'Per Unit Cost:' %><br>
+     <%= f.text_field :puc %>
+<br>
+     <%= f.label :om, 'Fixed Annual O&M Costs:' %><br>
+     <%= f.text_field :om %>
+<br>
+     <%= f.label :salv, 'Salvage Value:' %><br>
+     <%= f.text_field :salv %>
+<br>
+     <%= f.label :horiz, 'Project Horizon:' %><br>
+     <%= f.text_field :horiz %>
+<br>
+<br>
+<p><b> Depreciation Information </b></p>
+     <%= f.label :deprec_time, 'Depreciation Timeline:' %><br>
+     <%= f.text_field :deprec_time %>
+<br>
+      <%= f.radio_button :deprec_type, 'true' %>
+     <%= label :deprec_type_db_sl, 'Declining Balance Switching to Straight Line' %> <br>
+     &nbsp;&nbsp;<%= f.label :DB_per, '-► Percentage:' %>
+     &nbsp; <%= f.text_field :DB_per %>
+<br>
+     <%= f.radio_button :deprec_type, 'false' %>
+     <%= label :deprec_type_sl, 'Straight Line:' %>
+<br>
+<br>
+<p><b> Loan Information </b></p>
+     <%= f.label :loan_amt, 'Loan Amount:' %><br>
+     <%= f.text_field :loan_amt %>
+<br>
+     <%= f.label :loan_time, 'Loan Timeline:' %><br>
+     <%= f.text_field :loan_time %>
+<br>
+    <%= f.label :loan_interest_rate, 'Loan Rate:' %><br>
+    <%= f.text_field :loan_interest_rate %>
+<br>
+    <%= f.radio_button :loan_type, 'true' %>
+    <%= label :loan_type_principal, 'Equal Principal Payments' %>
+<br>
+    <%= f.radio_button :loan_type, 'false' %>
+    <%= label :loan_type_total, 'Equal Total Payments' %>
+<br>
+<br>
+
+<p><b> Tax Information </b></p>
+    <%= f.label :tax_rate, 'Effective Tax Rate (as percent):' %><br>
+    <%= f.text_field :tax_rate %>
+<br><br>    <%= f.submit %>
+</div>
+<% end %>
